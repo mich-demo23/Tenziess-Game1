@@ -1,8 +1,14 @@
 # Tenzies Game
 
-### View live site
+Simple Tenzies Game
 
-Let's play ! [Tenzies-Game](https://tenziess-game1.netlify.app/)
+## View live site
+Let's play! 😄 [Tenzies-Game🎮](https://tenziess-game1.netlify.app/)
+
+
+
+### REFERENCES 
+- [Bob Ziroll](https://v2.scrimba.com/learn-react-c0e)
 
 ## React + Vite
 
