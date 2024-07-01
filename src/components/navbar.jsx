@@ -1,7 +1,5 @@
 /* eslint-disable react/prop-types */
 import reactlogo from '../assets/react.svg'
-import sun from '../assets/sun.svg'
-import moon from '../assets/moon.svg';
 import '../App.css'
 
 function Navbar(props){
