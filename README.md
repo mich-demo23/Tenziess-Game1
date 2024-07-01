@@ -9,6 +9,7 @@ Let's play! 😄 [Tenzies-Game🎮](https://tenziess-game1.netlify.app/)
 
 ### REFERENCES 
 - [Bob Ziroll](https://v2.scrimba.com/learn-react-c0e)
+- Hosted on [Netlify](https://app.netlify.com) 
 
 ## React + Vite
 
