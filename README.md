@@ -1,10 +1,10 @@
-#Tenzies Game
+# Tenzies Game
 
-###View live site
+### View live site
 
 Let's play ! [Tenzies-Game](https://tenziess-game1.netlify.app/)
 
- React + Vite
+## React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
