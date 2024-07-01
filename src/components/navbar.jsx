@@ -1,26 +1,40 @@
+/* eslint-disable react/prop-types */
+import reactlogo from '../assets/react.svg'
+import sun from '../assets/sun.svg'
+import moon from '../assets/moon.svg';
 import '../App.css'
-import airbnb from '../assets/airbnb.svg'
-import search from '../assets/magnifying-glass.svg'
 
-function Navbar(){
+function Navbar(props){
 
-    return (
-        <>
-            <nav className='nav'>
-                <img src={airbnb} className='airbnb-logo'  />
-                <div className="main">
-                <div className="battery-top"></div>
-                <div className="battery-content">
-                <div className="charge"></div>
+    let width = window.innerWidth
+    if(width > 1000 ){
+        width = true
+    }
+    else {
+        width = false
+    }
+        
+        return (
+            <>
+            <div className={props.darkmode? "navbar dark" : 'navbar'}>
                 
+     
+                <div className='navbar-title'>
+                <img src={reactlogo} className='navbar-icon'/>
+                <p className='navbar-title-text'>TiredDev</p>
+                </div>
+
+                <div className='navbar-mode'>
+{/*                  
+                <img className='navbar-mode-icon .bounce' 
+                    src={props.darkmode ? sun : moon} 
+                    onClick={props.toggle}
+                />   */}
+                   
+
+                </div>
+
             </div>
-            </div>
-                <span className='nav-search'>
-                <input placeholder='Search' type='search' className='input'/>
-                    <img src={search} className='search'/>
-                    </span>
-                
-            </nav>
         </>
     )
 }
