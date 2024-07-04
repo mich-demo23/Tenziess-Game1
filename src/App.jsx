@@ -21,10 +21,9 @@ function App() {
   const [plays, setPlays ] = useState(0)
   const[ seconds, setSeconds] = useState(0)
   const [bestTime, setBestTime] = useState(
-     () =>
+  
       JSON.parse(sessionStorage.getItem('bestTime')) || "No record"
     ) 
-  
   
   const allHeldVal = useRef(false)
   const allSameValueVal = useRef(false)
@@ -40,18 +39,18 @@ function App() {
     allSameValueVal.current = allSameValue
     
     if(allHeld && allSameValue){
-      setTenzies(true)     
+      setTenzies(true)
+          
+      sessionStorage.setItem("bestTime", JSON.stringify(time))
         // localStorage.setItem("bestTime", JSON.stringify(time))
-        if(time < parseInt(bestTime)){
-
-          sessionStorage.setItem("bestTime", JSON.stringify(time))
+        if(time < bestTime){
           setBestTime(time)
         }
-    
     }
     
-  }, [dice, rolls, bestTime, seconds])
 
+    
+  }, [dice])
   
   //Dice numbers generation
   
@@ -100,6 +99,8 @@ function App() {
     //Dice roll 
 
     function rollDice(){
+  console.log(bestTime)
+
         
       setDice(oldDice =>oldDice.map(die => {
         return die.isHeld ?
@@ -122,8 +123,6 @@ function App() {
                         setRolls(roll => roll + 1)
                               } 
         }
-
-        
 
     //Die component render
   const dieRoll = dice.map(die => <Die
@@ -161,7 +160,18 @@ function App() {
 
   const time = hours +" : " + minutes +" : " +  secondsElapsed
 
-  
+
+  //reset game
+  function toggleReset(){
+    setBestTime("No record")
+    setSeconds(0)
+    setDice(allNewDice())
+    setTenzies(false)
+    setRolls(0)
+    sessionStorage.setItem('bestTime', JSON.stringify(0))
+    setPlays(0)
+    
+  }
 
   return (
       <div className='container'>
@@ -173,7 +183,7 @@ function App() {
     <main className='tenzies'>
           {tenzies && <div><Confetti
           width={windowWidth-70}
-          height={700} 
+          height={850} 
           numberOfPieces={600}
           colors={['#ff0000', '#f7d600', '#00ff00', '#3709d1' ]}
 
@@ -190,7 +200,7 @@ function App() {
 
           <button 
               onClick={rollDice}
-              className='roll-dice'>
+              className={tenzies? 'roll-dice new' : 'roll-dice'}>
             {tenzies? "New Game" : "Roll"}
           </button>
 
@@ -206,30 +216,30 @@ function App() {
           /> 
           <table className='stats'>
             <caption className='table-title'>Stats</caption>
-          <tr><td  className='table-left'>
+          <tbody>
+          <tr>
+          <td  className='table-left'>
           <div className='rolls-stamp'>Rolls </div>
           </td>
           <td className='table-right'>{rolls}</td>
-
-
           </tr>
-          <tr><td className='table-left'>
-          <div className='best-time-stamp'>Best Time  </div>
 
+          <tr><td className='table-left'>
+          <div className='best-time-stamp'>Best Time  </div>  
           </td>
           <td className='table-right'>{bestTime}</td>
-          
           </tr>
+
           <tr><td  className='table-left'>
           <div className='plays-in-a-row-stamp'>Plays in a row</div>
-
           </td>
-          <td className='table-right'>
-            {plays}
-          </td></tr>
-          
+          <td className='table-right'>{plays}</td></tr> 
+
+           </tbody> 
           </table>
           </div>
+
+          <button className='reset' onClick={toggleReset}>Reset</button>
     </main>
 
     <Footer />
